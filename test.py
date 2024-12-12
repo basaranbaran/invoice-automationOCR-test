@@ -1,1 +1,0 @@
-print ("Bu bir test yazısdır.")
