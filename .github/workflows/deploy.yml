@@ -1,0 +1,26 @@
+name: Deploy to Google Cloud Storage
+
+on:
+  push:
+    branches:
+      - main  # Ana branch için çalışır
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Set up Google Cloud SDK
+      uses: google-github-actions/setup-gcloud@v1
+      with:
+        project_id: ${{ secrets.GCP_PROJECT }}
+        service_account_key: ${{ secrets.GCP_KEY }}
+
+    - name: Deploy to Google Cloud Storage
+      run: |
+        gsutil rsync -r ./ gs://my-app-bucket
+
+

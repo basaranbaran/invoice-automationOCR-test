@@ -1,6 +1,15 @@
 import os
 
+
 class Config:
-    SECRET_KEY = 'your_secret_key'
-    UPLOAD_FOLDER = os.path.join('app', 'web', 'static', 'uploads')
-    MAX_CONTENT_LENGTH = 16 * 1024 * 1024  # Max dosya boyutu: 16 MB
+    SECRET_KEY = os.environ.get('SECRET_KEY', 'default-secret-key')
+    UPLOAD_FOLDER = os.path.join(os.getcwd(),'web' 'static', 'uploads')
+    ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'pdf'}  # İzin verilen dosya türleri.
+
+
+class DevelopmentConfig(Config):
+    DEBUG = True
+
+
+class ProductionConfig(Config):
+    DEBUG = False

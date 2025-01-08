@@ -1,12 +1,8 @@
 from flask import Blueprint
 
-# Blueprint'in adını tanımlayın
-web_bp = Blueprint(
-    'web',  # Blueprint ismi
-    __name__,
-    template_folder='templates',  # Blueprint'e özel templates dizini
-    static_folder='static'  # Blueprint'e özel statik dosya dizini
-)
 
-# Route dosyasını Blueprint'e ilişkilendirin
+# Blueprint tanımlama
+web_bp = Blueprint('web', __name__)
+
+# Routes dosyasını import et
 from . import routes
