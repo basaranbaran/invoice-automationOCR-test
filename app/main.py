@@ -1,30 +1,36 @@
 from flask import Flask
 from flask_cors import CORS
-from web.routes import web_bp
+from app.web.routes import web_bp
 from config import DevelopmentConfig
 import os
-
+from app.make_celery import make_celery
 
 def create_app():
-    """Flask uygulamasını kurar."""
+    """Flask application factory."""
     app = Flask(__name__, static_folder='static')
 
-    # CORS yapılandırması
+    # CORS configuration
     CORS(app)
 
-    # Config ayarları
+    # Load configuration
     app.config.from_object(DevelopmentConfig)
 
-    # Yükleme dizinini oluştur
+    # Celery configuration
+    app.config.update(
+        CELERY_BROKER_URL='redis://localhost:6379/0',
+        CELERY_RESULT_BACKEND='redis://localhost:6379/0'
+    )
+    celery = make_celery(app)
+
+    # Create upload directory
     os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
-    # Blueprint kaydedin
+    # Register blueprint
     app.register_blueprint(web_bp)
 
-    return app
+    return app, celery
 
+app, celery = create_app()
 
 if __name__ == '__main__':
-    app = create_app()
     app.run(port=5002, debug=True)
-

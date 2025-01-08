@@ -1,5 +1,5 @@
 from flask import Flask
-from web import web_bp  # web blueprint'i burada import edilmiş olmalı
+from app.web import web_bp  # web blueprint'i burada import edilmiş olmalı
 import os
 
 

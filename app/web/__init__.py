@@ -1,8 +1,9 @@
+# web/__init__.py
 from flask import Blueprint
 
+web_bp = Blueprint("web", __name__)
 
-# Blueprint tanımlama
-web_bp = Blueprint('web', __name__)
 
-# Routes dosyasını import et
-from . import routes
+@web_bp.route("/")
+def home():
+    return "Hello from web module"
