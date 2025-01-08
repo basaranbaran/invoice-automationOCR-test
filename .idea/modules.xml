@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/invoice-automationREAL.iml" filepath="$PROJECT_DIR$/.idea/invoice-automationREAL.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/invoice-automationOCR.iml" filepath="$PROJECT_DIR$/.idea/invoice-automationOCR.iml" />
     </modules>
   </component>
 </project>
